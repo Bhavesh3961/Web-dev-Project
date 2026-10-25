@@ -1,0 +1,478 @@
+/* 1. CSS VARIABLES & RESET */
+:root{
+    /* color pallete store karega hamesa ka liya : rich espresso dark + warm saffron. gols + cream */
+    /* -- these are custom variable we defined so whenever 
+    we want to use them just write color: var(--saffron); */
+    --bg-main: #fdfbf7; 
+    --bg-secondary: #f4efe6;
+    --text-dark: #1e1b18;
+    --text-muted:#6e655f;
+    /* brand accent colors */
+    --accent: #d9532f;
+    --accent-light: #fbe6df;
+    --sage:#2d4a3e;
+
+    /* glassmorphism variables */
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border:rgba(255, 255, 255, 0.9) ;
+    --glass-shadow:0 8px 32px rgba(30, 27, 24, 0.06) ;
+
+    /* 3 font combination */
+    --font-heading: 'Playfair Display', serif;
+    --font-hand: 'Kalam', cursive;
+    --font-body: 'Outfit', sans-serif;
+
+}
+*{
+    /* * is Universal Selector (it select every single HTML tag)*/
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    /* it makes clinking links and switching bw page smooth */
+    scroll-behavior: smooth;
+}
+body{
+    background-color: var(--bg-main);
+    /* for glass morphism to look real */
+    background-image:radial-gradient(circle at 10% 15%, rgba(217, 83, 47, 0.08), transparent 35%),
+    radial-gradient(circle at 90% 80%, rgba(45, 74, 62, 0.08), transparent 40%);;
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+/* helps in centering content on large screens */
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+/* helper class for kalam handwritten font */
+.handwritten{
+    font-family:  var(--font-hand);
+    color: var(--saffron);
+    font-weight: 400;
+}
+a{
+    /* remove blue color and underlines */
+    text-decoration: none;
+    color: inherit;
+}
+ul{
+    list-style: none;
+}
+/* navbar styling : floating glass navbar */
+.navbar{
+    position: sticky;
+    top: 0;  /* Zero gap at the top */
+    background-color: var(--bg-main);
+    z-index: 1000;
+    padding: 14px 20px;
+}
+
+.nav-box{
+    /* . When you put display: flex; on a nav-box container,
+    its childrens (nav-links) line up side-by-side a */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    gap:20px ;
+
+    /* real night mode glassmorphism pill */
+    background: #ffffffff;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border:1.5px solid #e5d8c5;;
+    box-shadow:0 10px 35px rgba(180, 150, 115, 0.15);
+    border-radius: 100px;
+    padding: 14px 28px;
+}
+
+.logo{
+    font-family: var(--font-heading);
+    font-size: 1.65rem;
+    font-weight: 700;
+    white-space: nowrap;  /* prevent two words from breaking */
+}
+
+.nav-links{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing:1.5px ;
+    color:#4a3f35;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1.5px solid transparent;
+    white-space:  nowrap ;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1.5px solid #dfd1be;    /* Visible warm champagne border! */
+    color: #1e1b18;
+    box-shadow: 0 6px 20px rgba(175, 145, 110, 0.22); /* Soft warm outer glow */
+    
+}
+
+.btn-nav {
+    background-color: var(--accent);
+    color: #ffffff ;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    white-space: nowrap; /* prevents button text in breaking 2 lines */
+    transition: all 0,3s ease;
+}
+
+.tn-nav:hover{
+    background-color: var(--sage);
+    transform: translateY(-2px); /* move buttorn upward on hovering mouse over it */
+    color: var(--bg-dark);
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.4);
+}
+/* ----HERO SECTION ---*/
+.hero{
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px 24px;
+    text-align: center;
+}
+
+.veg-badge{
+    display:inline-block; /* by default margins dont work properly
+    but after making inline we can give padding ,rounded corner, and margin*/
+    background-color: #e6f4ea;
+    color:var(--sage);
+    border: 1px solid var(--sage);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero h1{
+    font-family: var(--font-heading);
+    font-size: 3.2rem;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.hero p{
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width:650px;
+    margin:0 auto 28px auto;
+}
+
+.btn-primary{
+    display: inline-block;
+    background-color: var(--accent);
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(217, 83, 47, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover{
+    background-color: var(--sage);
+    transform: translateY(-2px);
+}
+
+.hero-img{
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: cover; /*  tells browser that Crop the image neatly to fill the 400px box
+     without ever stretching or distorting the food!*/
+    border-radius: 24px;
+    margin-top: 40px;
+    box-shadow: var(--glass-shadow);
+}
+/* ============= 4. ABOUT SECTION ============= */
+.about{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 80px 24px;
+}
+
+.about-img{
+    width: 48%;
+    height:380px;
+    object-fit: cover;
+    border-radius: 24px;
+    border: 2px solid #e5d5c5;
+    box-shadow: var(--glass-shadow);
+}
+
+.about-text{
+    width:52%
+}
+
+.sub-title{
+    font-size: 1.3rem;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.about-text h2{
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    line-height: 1.25;
+    margin-bottom: 6px;
+}
+
+.about-text h2{
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    line-height: 1.25;
+    margin-bottom: 16px;
+}
+
+.about-text p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+.speciality-list li {
+    background: #ffffff;
+    border: 1px solid #e5d8c5;
+    padding: 12px 18px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+/* ===== 5. MENU SECTION & DISH CARDS ====== */
+
+.menu{
+    padding:80px 24px;
+}
+
+.section-header{
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-header h2{
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+}
+
+/* Optional Enhancement: Menu Category Bar */
+
+.menu-categories{
+    display: flex;
+    justify-content: center;
+    flex-wrap:center;
+    gap: 14px;
+    margin-bottom:45px
+}
+
+.cat-pill{
+    background:#ffffff;
+    border: 1.5px solid #e5d8c5 ;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    transition: all 0.3s ease;   
+}
+
+.cat-pill:hover,
+.cat-pill:focus{
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    box-shadow:0 6px 18px rgba(217, 83, 47, 0.25) ;
+}
+
+/* CSS GRID: Arranges the 8 Dish Cards into 4 Equal Columns */
+
+.menu-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap:28px;
+}
+
+/* Individual Dish Card Styling */
+
+.menu-card{
+    display: flex;
+    align-items: center;
+    gap:20px;
+    background:#ffffff;
+    border:1.5px solid #e5d8c5 ;
+    border-radius: 20px;
+    padding: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Optional Enhancement: Card Hover Effect */
+
+.menu-card:hover{
+    transform: translateY(-6px);
+    box-shadow:0 12px 30px rgba(180, 150, 115, 0.22) ;
+}
+
+.menu-card img{
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 18px;
+    margin-bottom: 14px;
+    flex-shrink: 0; /* Prevents the square image from ever getting squished! */
+}
+
+.menu-card h3{
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.menu-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+}
+.price {
+    display: inline-block;
+    font-family: var(--font-hand);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* Optional Enhancement: Subtle Keyframe Animation in Hero Section */
+
+@keyframes floatSlow {
+    0%{transform: translateY(0px)}
+    50%{transform: translateY(-8px);}
+    100%{transform: tanslateY(0px);}
+}
+
+.veg-badge{
+    animation: floatSlow 3s ease-in-out infinite;
+}
+
+.specials{
+    padding: 70px 24px;
+}
+
+.specials-grid{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 28px
+}
+
+.specials-card{
+    background: var(--bg-secondary);
+    border: 2px solid #dfd1be;
+    border-radius: 24px;
+    padding: 36px;
+    transition: all 0.3s ease;
+}
+
+.special-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(180, 150, 115, 0.22) ;
+}
+
+.special-tag{
+    display: inline-block;
+    background:var(--accent) ;
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.special-card h3{
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    margin-bottom:12px;
+}
+
+.special-card p{
+    color:var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.old-price{
+    text-decoration: line-through;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-right: 12px;
+}
+
+.new-price{
+    font-size: 1.6rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/*== 7. CUSTOMER REVIEWS SECTION === */
+
+.reviews{
+    padding: 70px 24px;
+}
+
+/* 3 Equal Columns for the 3 Review Cards */
+.reviews-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+}
+
+.review-card{
+    background:#ffffff;
+    border:1.5px solid #e5d8c5;
+    border-radius: 20px;
+    padding: 28px;
+    transition:all 0.3s ease;
+}
+
+.review-card:hover{
+    transform: translateY(-5px);
+    box-shadow:0 12px 30px rgba(180, 150, 115, 0.2) ;
+}
+
+.stars{
+    color:#f59e0b;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+}
+
+.review-card p{
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom:18px ;
+}
+
+.review-card h4{
+    font-size: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+
+
+  
